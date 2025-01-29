@@ -12,7 +12,6 @@ void main() async {
   Hive.registerAdapter(ProductAdapter());
   Hive.registerAdapter(DiscountAdapter());
   await Hive.openBox<Product>('products');
-
   runApp(const MyApp());
 }
 
