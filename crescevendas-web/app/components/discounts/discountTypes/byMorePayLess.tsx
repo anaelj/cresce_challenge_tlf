@@ -1,5 +1,5 @@
 import { Product } from '@/app/types/discount'
-import { formatDiscount, formatPrice } from '@/lib/formatters';
+import { formatPrice } from '@/lib/formatters';
 import React from 'react'
 
 interface DiscountProps  {

@@ -1,12 +1,12 @@
 'use client';
 
+import React from 'react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {GripVertical } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Link from 'next/link';
 import { Product  } from '@/app/types/discount';
-import Image from 'next/image';
 import { ViewDiscountModal } from './ViewDiscountModal';
 import { Switch } from '@/components/ui/switch';
 import { useCompany } from '@/app/context/CompanyContext';
@@ -52,12 +52,13 @@ export function DiscountList({ products, onStatusChange }: DiscountListProps) {
 
         <div className="flex gap-4 w-full p-3 pb-6">
           <div className='flex flex-col w-full'>
-          <label className="text-[16px] font-normal text-[#455a64] pb-2">Status</label>
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-full">
+          <label htmlFor="status-filter" className="text-[16px] font-normal text-[#455a64] pb-2">Status</label>
+              <Select value={statusFilter} onValueChange={setStatusFilter} defaultValue="all">
+                <SelectTrigger id="status-filter" className="w-full">
                   <SelectValue placeholder="Filtrar por status" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="all">Todos</SelectItem>
                   <SelectItem value="active">Ativos</SelectItem>
                   <SelectItem value="inactive">Inativos</SelectItem>
                 </SelectContent>
@@ -65,11 +66,12 @@ export function DiscountList({ products, onStatusChange }: DiscountListProps) {
           </div>
           <div className='flex flex-col w-full'>
           <label className="text-[16px] font-normal text-[#455a64] pb-2">Tipo desconto</label>
-          <Select value={typeFilter} onValueChange={setTypeFilter}>
+          <Select value={typeFilter} onValueChange={setTypeFilter} defaultValue="all">
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Filtrar por tipo" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="all">Todos</SelectItem>
               <SelectItem value="buy-more-pay-less">Leve + Pague-</SelectItem>
               <SelectItem value="percentage">Percentual</SelectItem>
               <SelectItem value="from-to">De Por</SelectItem>
